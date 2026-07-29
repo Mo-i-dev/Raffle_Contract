@@ -33,3 +33,5 @@ jobs:
 
       - name: Run Forge tests
         run: forge test -vvv
+        env:
+          SEPOLIA_PRIVATE_KEY: ${{ secrets.SEPOLIA_PRIVATE_KEY }}
