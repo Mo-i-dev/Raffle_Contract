@@ -63,7 +63,7 @@ contract HelperConfig is Script, ConstantVariables {
             subscriptionId: 0,
             callbackGasLimit: 500000,
             link: 0x779877A7B0D9E8603169DdbD7836e478b4624789,
-           deployerKey:vm.envUint("SEPOLIA_PRIVATE_KEY")
+            deployerKey: vm.envUint("SEPOLIA_PRIVATE_KEY")
         });
     }
 

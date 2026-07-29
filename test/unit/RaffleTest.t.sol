@@ -9,7 +9,7 @@ import {Vm} from "forge-std/Vm.sol";
 import {VRFCoordinatorV2_5Mock} from "@chainlink/contracts/src/v0.8/vrf/mocks/VRFCoordinatorV2_5Mock.sol";
 import {ConstantVariables} from "script/HelperConfig.s.sol";
 
-contract RaffleTest is Test,ConstantVariables {
+contract RaffleTest is Test, ConstantVariables {
     Raffle public raffle;
     HelperConfig public helperConfig;
 
@@ -45,8 +45,8 @@ contract RaffleTest is Test,ConstantVariables {
         _;
     }
 
-    modifier SkipFork(){
-        if(block.chainid != ANVIL_CHAINID ){
+    modifier SkipFork() {
+        if (block.chainid != ANVIL_CHAINID) {
             return;
         }
         _;

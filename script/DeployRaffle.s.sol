@@ -19,11 +19,14 @@ contract DeployRaffle is Script {
         if (networkConfig.subscriptionId == 0) {
             CreateSubscription createSubscription = new CreateSubscription();
             (networkConfig.subscriptionId, networkConfig.vrfCoordinator) =
-                createSubscription.createSubscription(networkConfig.vrfCoordinator,networkConfig.deployerKey);
+                createSubscription.createSubscription(networkConfig.vrfCoordinator, networkConfig.deployerKey);
 
             FundSubscription fundSubscription = new FundSubscription();
             fundSubscription.fundSubscription(
-                networkConfig.vrfCoordinator, networkConfig.subscriptionId, networkConfig.link,networkConfig.deployerKey
+                networkConfig.vrfCoordinator,
+                networkConfig.subscriptionId,
+                networkConfig.link,
+                networkConfig.deployerKey
             );
         }
 
@@ -38,7 +41,9 @@ contract DeployRaffle is Script {
         );
         vm.stopBroadcast();
         AddConsumer addConsumer = new AddConsumer();
-        addConsumer.addConsumer(networkConfig.subscriptionId, networkConfig.vrfCoordinator, address(raffle),networkConfig.deployerKey);
+        addConsumer.addConsumer(
+            networkConfig.subscriptionId, networkConfig.vrfCoordinator, address(raffle), networkConfig.deployerKey
+        );
         return (raffle, helperConfig);
     }
 }

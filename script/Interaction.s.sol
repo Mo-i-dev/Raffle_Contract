@@ -12,11 +12,11 @@ contract CreateSubscription is Script, ConstantVariables {
         HelperConfig helperConfig = new HelperConfig();
         address vrfCoordinator = helperConfig.getActiveNetworkConfig().vrfCoordinator;
         uint256 deployerKey = helperConfig.getActiveNetworkConfig().deployerKey;
-        (uint256 subId,) = createSubscription(vrfCoordinator,deployerKey);
+        (uint256 subId,) = createSubscription(vrfCoordinator, deployerKey);
         return (subId, vrfCoordinator);
     }
 
-    function createSubscription(address vrfCoordinator,uint256 deployerKey) public returns (uint256, address) {
+    function createSubscription(address vrfCoordinator, uint256 deployerKey) public returns (uint256, address) {
         console.log("Create Subscription on chain Id:", block.chainid);
         vm.startBroadcast(deployerKey);
         uint256 subId = VRFCoordinatorV2_5Mock(vrfCoordinator).createSubscription();
@@ -39,10 +39,10 @@ contract FundSubscription is Script, ConstantVariables {
         uint256 subId = helperConfig.getActiveNetworkConfig().subscriptionId;
         address linkToken = helperConfig.getActiveNetworkConfig().link;
         uint256 deployerKey = helperConfig.getActiveNetworkConfig().deployerKey;
-        fundSubscription(vrfCoordinator, subId, linkToken,deployerKey);
+        fundSubscription(vrfCoordinator, subId, linkToken, deployerKey);
     }
 
-    function fundSubscription(address vrfCoordinator, uint256 subId, address linkToken,uint256 deployerKey) public {
+    function fundSubscription(address vrfCoordinator, uint256 subId, address linkToken, uint256 deployerKey) public {
         console.log("Funding Subscription: ", subId);
         console.log("Using vrfCoordinator: ", vrfCoordinator);
         console.log("on ChainId:", block.chainid);
@@ -68,10 +68,10 @@ contract AddConsumer is Script {
         address vrfCoordinator = helperConfig.getActiveNetworkConfig().vrfCoordinator;
         uint256 subId = helperConfig.getActiveNetworkConfig().subscriptionId;
         uint256 deployerKey = helperConfig.getActiveNetworkConfig().deployerKey;
-        addConsumer(subId, vrfCoordinator, mostRecentDeployedContract,deployerKey);
+        addConsumer(subId, vrfCoordinator, mostRecentDeployedContract, deployerKey);
     }
 
-    function addConsumer(uint256 subId, address vrfCoordinator, address consumer,uint256 deployerKey) public {
+    function addConsumer(uint256 subId, address vrfCoordinator, address consumer, uint256 deployerKey) public {
         console.log("Adding Consumer contract:", consumer);
         console.log("To vrfCoordinator:", vrfCoordinator);
         console.log("On ChainId:", block.chainid);
